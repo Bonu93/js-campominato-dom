@@ -89,13 +89,6 @@ playBtn.addEventListener('click', () => {
 
 
 
-
-
-
-
-
-
-
 /* FUNCTIONS */
 function gameOver (grid, bombList) {
 
