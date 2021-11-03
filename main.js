@@ -38,7 +38,7 @@ playBtn.addEventListener('click', () => {
             cells = 49;
     }
 
-    const bombList = genBombs(1, cells);
+    const bombList = genBombs(16, cells);
 
     const attempts = [];
     let maxAttempts = cells - bombList.length;
