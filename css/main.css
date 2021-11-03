@@ -55,6 +55,7 @@ main {
 
 /* GRID */
 
+
 .grid {
     width: 500px;
     height: 500px;
@@ -67,8 +68,6 @@ main {
     justify-content: center;
     align-items: center;
     border: 1px solid black;
-    width: calc(100% / 10);
-    height: calc(100% / 10);
     cursor: pointer;
 }
 
@@ -103,6 +102,8 @@ main {
     font-size: 1.5rem;
     margin-top: 10px;
 }
+
+/* GAME OVER */
 
 .grid.game-over {
     cursor: default;

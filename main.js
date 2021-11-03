@@ -13,13 +13,19 @@ Al termine della partita il software deve scoprire tutte le bombe e comunicare i
 */
 
 const playBtn = document.querySelector('.play')
-const grid = document.querySelector('.grid')
+const wrap = document.querySelector('.wrap')
 const message = document.querySelector('.message')
 
 playBtn.addEventListener('click', () => {
 
+    wrap.innerHTML = '';
+    message.innerHTML = '';
+    const grid = document.createElement('div');
+    grid.classList.add('grid');
+    wrap.append(grid);
+
     const userChoice = document.getElementById('choose').value;
-    grid.innerHTML = '';
+    
 
     let cells = 0;
 
@@ -35,11 +41,9 @@ playBtn.addEventListener('click', () => {
     }
 
     const bombList = genBombs(16, cells);
-    console.log(bombList);
 
     const attempts = [];
     let maxAttempts = cells - bombList.length;
-    console.log('tentativi massimi:', maxAttempts);
 
     for (let i = 1; i <= cells; i++) {
         const square = genSquare();
@@ -54,22 +58,20 @@ playBtn.addEventListener('click', () => {
                 square.classList.add('hard');
         }
 
-        let span = document.createElement('span');
-        span.append(i);
-        square.append(span);
+        
+        square.append(i);
 
         grid.append(square);
-        
-
-        
-
         
 
         square.addEventListener('click', function() {
 
             if (bombList.includes(i)) {
-                square.classList.add('bomb')
-                message.innerHTML = `Hai perso, hai fatto ${attempts.length} tentativi!`
+                message.innerHTML = `Hai perso, hai azzeccato ${attempts.length} tentativi!`
+                gameOver(grid, bombList);
+            } else if (attempts.length === (cells - bombList.length)) {
+                message.innerHTML = `Hai vinto!`
+                gameOver(grid, bombList);
             } else {
                 square.classList.add('safe');
                 if (!attempts.includes(i)) {
@@ -77,12 +79,6 @@ playBtn.addEventListener('click', () => {
                     maxAttempts -= 1;
                     message.innerHTML = `Hai ancora ${maxAttempts} tentativi a disposizione`
                 }
-            }
-            console.log(maxAttempts);
-
-            
-            if (attempts.length === (cells - bombList.length)) {
-                message.innerHTML = `Hai vinto!`
             }
         })
     }
@@ -101,7 +97,22 @@ playBtn.addEventListener('click', () => {
 
 
 /* FUNCTIONS */
+function gameOver (grid, bombList) {
 
+     grid.classList.add('game-over');
+
+
+     const squares = document.querySelectorAll('.square');
+     for (let i = 0; i < squares.length; i++) {
+         const square = squares[i];
+         const squareValue = parseInt(square.innerHTML);
+         if (bombList.includes(parseInt(squareValue))) {
+             square.classList.add('bomb');
+         }
+     }
+
+
+}
 
 
 function genSquare () {
