@@ -1,5 +1,4 @@
 /*
-
 L’utente indica un livello di difficoltà in base al quale viene generata una griglia di gioco quadrata, in cui ogni cella contiene un numero tra quelli compresi in un range:
 con difficoltà 1 => tra 1 e 100
 con difficoltà 2 => tra 1 e 81
@@ -9,7 +8,6 @@ I numeri nella lista delle bombe non possono essere duplicati.
 In seguito l’utente clicca su ogni cella: se il numero è presente nella lista dei numeri generati - abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina, altrimenti la cella cliccata si colora di azzurro e l’utente può continuare a cliccare sulle altre celle.
 La partita termina quando il giocatore clicca su una bomba o raggiunge il numero massimo possibile di numeri consentiti.
 Al termine della partita il software deve scoprire tutte le bombe e comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
-
 */
 
 const playBtn = document.querySelector('.play')
@@ -40,7 +38,7 @@ playBtn.addEventListener('click', () => {
             cells = 49;
     }
 
-    const bombList = genBombs(16, cells);
+    const bombList = genBombs(1, cells);
 
     const attempts = [];
     let maxAttempts = cells - bombList.length;
@@ -69,9 +67,6 @@ playBtn.addEventListener('click', () => {
             if (bombList.includes(i)) {
                 message.innerHTML = `Hai perso, hai azzeccato ${attempts.length} tentativi!`
                 gameOver(grid, bombList);
-            } else if (attempts.length === (cells - bombList.length)) {
-                message.innerHTML = `Hai vinto!`
-                gameOver(grid, bombList);
             } else {
                 square.classList.add('safe');
                 if (!attempts.includes(i)) {
@@ -79,6 +74,11 @@ playBtn.addEventListener('click', () => {
                     maxAttempts -= 1;
                     message.innerHTML = `Hai ancora ${maxAttempts} tentativi a disposizione`
                 }
+            }
+
+            if (attempts.length === (cells - bombList.length)) {
+                message.innerHTML = `Hai vinto!`
+                gameOver(grid, bombList);
             }
         })
     }
