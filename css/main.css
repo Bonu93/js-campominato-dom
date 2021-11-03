@@ -1,0 +1,91 @@
+/* GENERAL */
+
+* {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #7fffd4;
+}
+
+main {
+    flex-grow: 1;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* HEADER */
+
+.toolbar {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+}
+
+.brand {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.toolbar .brand img{
+    width: 50px;
+    margin-right: 20px;
+}
+
+#choose {
+    padding-right: 80px;
+}
+
+.play {
+    padding: 0 20px;
+}
+
+/* GRID */
+
+.grid {
+    width: 500px;
+    height: 500px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.square {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+    cursor: pointer;
+}
+
+.square.easy {
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+}
+
+.square.medium {
+    width: calc(100% / 9);
+    height: calc(100% / 9);
+}
+
+.square.hard {
+    width: calc(100% / 7);
+    height: calc(100% / 7);
+}
+
+.square.active {
+    background-color: #6495ed;
+    color: #fff;
+}
