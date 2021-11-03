@@ -85,7 +85,12 @@ main {
     height: calc(100% / 7);
 }
 
-.square.active {
+.square.safe {
     background-color: #6495ed;
+    color: #fff;
+}
+
+.square.bomb {
+    background-color: red;
     color: #fff;
 }
