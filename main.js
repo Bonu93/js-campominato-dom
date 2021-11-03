@@ -14,6 +14,7 @@ Al termine della partita il software deve scoprire tutte le bombe e comunicare i
 
 const playBtn = document.querySelector('.play')
 const grid = document.querySelector('.grid')
+const message = document.querySelector('.message')
 
 playBtn.addEventListener('click', () => {
 
@@ -36,6 +37,10 @@ playBtn.addEventListener('click', () => {
     const bombList = genBombs(16, cells);
     console.log(bombList);
 
+    const attempts = [];
+    let maxAttempts = cells - bombList.length;
+    console.log('tentativi massimi:', maxAttempts);
+
     for (let i = 1; i <= cells; i++) {
         const square = genSquare();
         switch (cells) {
@@ -56,13 +61,28 @@ playBtn.addEventListener('click', () => {
         grid.append(square);
         
 
+        
 
+        
 
         square.addEventListener('click', function() {
+
             if (bombList.includes(i)) {
                 square.classList.add('bomb')
+                message.innerHTML = `Hai perso, hai fatto ${attempts.length} tentativi!`
             } else {
                 square.classList.add('safe');
+                if (!attempts.includes(i)) {
+                    attempts.push(i);
+                    maxAttempts -= 1;
+                    message.innerHTML = `Hai ancora ${maxAttempts} tentativi a disposizione`
+                }
+            }
+            console.log(maxAttempts);
+
+            
+            if (attempts.length === (cells - bombList.length)) {
+                message.innerHTML = `Hai vinto!`
             }
         })
     }
@@ -81,6 +101,8 @@ playBtn.addEventListener('click', () => {
 
 
 /* FUNCTIONS */
+
+
 
 function genSquare () {
     const node = document.createElement('div');

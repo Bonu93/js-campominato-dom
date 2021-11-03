@@ -18,8 +18,10 @@ main {
     flex-grow: 1;
     overflow: auto;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 /* HEADER */
@@ -93,4 +95,16 @@ main {
 .square.bomb {
     background-color: red;
     color: #fff;
+}
+
+/* MESSAGE */
+
+.message {
+    font-size: 1.5rem;
+    margin-top: 10px;
+}
+
+.grid.game-over {
+    cursor: default;
+    pointer-events: none;
 }
