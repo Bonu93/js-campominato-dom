@@ -106,7 +106,7 @@ function gameOver (grid, bombList) {
      for (let i = 0; i < squares.length; i++) {
          const square = squares[i];
          const squareValue = parseInt(square.innerHTML);
-         if (bombList.includes(parseInt(squareValue))) {
+         if (bombList.includes(squareValue)) {
              square.classList.add('bomb');
          }
      }
